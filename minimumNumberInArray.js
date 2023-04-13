@@ -1,4 +1,4 @@
-let nums = [2, 3, 4, 5, 1];
+let nums = [2, 3, 5, 1];
 var findMin = function (nums) {
   let start = 0;
   let end = nums.length - 1;

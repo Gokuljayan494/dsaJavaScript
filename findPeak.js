@@ -9,14 +9,14 @@ var findPeakElement = function (nums) {
     // break;
     if (nums[middle] > nums[middle + 1]) {
       start = middle + 1;
-      break;
+      // break;
       return asc(nums, start, end);
     }
     if (nums[middle] < nums[middle - 1]) {
       end = middle - 1;
       console.log(`hello`);
       console.log(end);
-      break;
+      // break;
       return dsc(nums, start, end);
     }
   }

@@ -1,13 +1,19 @@
-// nums = [-6, -5, -4, -3, -2, -1, 1, 2, 3];
-// nums = [-1, 1];
-nums = [-1563, -236, -114, -55, 427, 447, 687, 752, 1021, 1636];
+// arr = [-3, -2, -1, 0, 1, 2, 3];
+// nums = [5, 20, 66, 1314];
+// nums = [-3, -2, -1, 0, 0, 1, 2];
 // nums = [-2, -1, -1, 1, 2, 3];
-// nums = [-3, -2, -1, 1, 2];
-
+// nums = [-1563, -236, -114, -55, 427, 447, 687, 752, 1021, 1636];
+// nums = [-1563, -236, -114, -55, 427, 447, 687, 752, 1021, 1636];
+// nums = [-1563, -236, -114, -55, 427, 447, 687, 752, 1021, 1636];
+// nums = [-3, -2, -1, 0, 0, 1, 2];
+// nums = [-2, -1, -1, 1, 2, 3];
+nums = [5, 20, 66, 1314];
 /**
  * @param {number[]} nums
  * @return {number}
+ *
  */
+let subValue = 0;
 negativeInteger = function (arr) {
   let value;
   start = 0;
@@ -15,16 +21,16 @@ negativeInteger = function (arr) {
   while (start <= end) {
     middle = Math.trunc((start + end) / 2);
 
-    console.log(`start:${start},end:${end}`);
     // break;
-    console.log(`middle:${middle}`);
-    // break;
+    // if (arr[start] || arr[end] === 0) {
+    //   subValue = subValue + 1;
+    //   console.log(subValue);
+    // }
     if (arr[middle] === 0) {
       end = middle - 1;
     }
     if (arr[middle] > 0) {
       end = middle - 1;
-      console.log(end);
     }
     if (arr[middle] < 0) {
       //   break;
@@ -33,7 +39,7 @@ negativeInteger = function (arr) {
     }
   }
   if (value) {
-    return value;
+    return value + 1;
   } else {
     return -1;
   }
@@ -45,18 +51,18 @@ positiveIntegers = function (arr) {
   while (start <= end) {
     middle = Math.trunc((start + end) / 2);
 
-    console.log(`start:${start},end:${end}`);
     // break;
-    console.log(`middle:${middle}`);
     // break;
+    if (arr[start] === 0 || arr[end] === 0) {
+      subValue = subValue + 1;
+    }
     if (arr[middle] === 0) {
       start = middle + 1;
+      subValue = subValue + 1;
     }
     if (arr[middle] > 0) {
       end = middle - 1;
       value = middle;
-
-      console.log(end);
     }
     if (arr[middle] < 0) {
       //   break;
@@ -81,19 +87,35 @@ var maximumCount = function (nums) {
 
   if (valueNegativeIntegers == -1) valueNegativeIntegers = 0;
 
-  totalNegativeIntegers = valueNegativeIntegers + 1;
+  totalNegativeIntegers = valueNegativeIntegers;
+
   console.log(`totalNegativeIntegers:${totalNegativeIntegers}`);
+
   valuePositiveIntegers = positiveIntegers(nums);
-  console.log(`positiveInteger:${positiveIntegers}`);
 
   if (valuePositiveIntegers === -1) valuePositiveIntegers = 0;
-  totalPostiveIntegers = valuePositiveIntegers + 2;
+
+  console.log(`valuePositiveIntegers:${valuePositiveIntegers}`);
+  console.log(`nums:${nums.length}`);
+
+  console.log(`cal:${nums.length - valuePositiveIntegers - subValue}`);
+  totalPostiveIntegers = nums.length - valuePositiveIntegers - subValue;
+  console.log(`value: ${nums.length - 1 - valuePositiveIntegers}`);
+
+  console.log(`totalPositibeIntegers:${totalPostiveIntegers}`);
+  if (totalNegativeIntegers === totalPostiveIntegers) {
+    return totalNegativeIntegers;
+  }
   if (totalNegativeIntegers > totalPostiveIntegers) {
     return totalNegativeIntegers;
   }
+
   if (totalPostiveIntegers > totalNegativeIntegers) {
-    return totalNegativeIntegers;
+    console.log(totalPostiveIntegers);
+    return totalPostiveIntegers;
   } else {
     return -1;
   }
 };
+value = maximumCount(nums);
+console.log(value);

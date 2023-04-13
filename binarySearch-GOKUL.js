@@ -118,4 +118,39 @@
 
 // target = 2;
 
-const arr = [1, 2, 3, 4, 5, 55, 66, 77];
+const arr = [-1, 0, 3, 5, 9, 12];
+var search = function (nums, target) {
+  start = 0;
+  end = nums.length - 1;
+  while (start <= end) {
+    middle = Math.trunc((start + end) / 2);
+    console.log(`--------`);
+    console.log(`--------`);
+    console.log(`--------`);
+    console.log(`middle:${middle}`);
+    console.log(`start:${start},end:${end}`);
+    if (target < nums[middle]) {
+      end = middle - 1;
+    }
+    if (target > nums[middle]) {
+      console.log(`middle here:${middle}`);
+      start = middle + 1;
+      console.log(`start:${start}`);
+    }
+    // console.log(target === nums[middle]);
+    // console.log(middle);
+    if (target === nums[middle]) {
+      console.log(target === nums[middle]);
+
+      return middle;
+    }
+    // if (!target === nums[middle]) {
+    //   console.log(!target === nums[middle]);
+    //   return -1;
+    // }
+  }
+  return -1;
+};
+value = search(arr, 2);
+
+console.log(`value:${value}`);
